@@ -62,3 +62,21 @@ var graphQLServer = express();
 graphQLServer.use('/', graphqlHTTP({ schema: schema, graphiql: true }));
 graphQLServer.listen(8080);
 console.log("The GraphQL Server is running.")
+
+var compiler = webpack({
+    entry: "./index.js",
+    output: {
+        path: __dirname,
+        filename: "bundle.js",
+        publicPath: "/static/"
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            }
+        ]
+    }
+});
