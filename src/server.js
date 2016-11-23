@@ -40,7 +40,7 @@ const goldbergType = new GraphQLObjectType({
    }
 });
 
-var queryType = new GraphQLObjectType({
+const queryType = new GraphQLObjectType({
     name: "query",
     description: "Goldberg query",
     fields: {
@@ -58,12 +58,12 @@ var queryType = new GraphQLObjectType({
 
 const schema = new GraphQLSchema({ query: queryType });
 
-var graphQLServer = express();
+const graphQLServer = express();
 graphQLServer.use('/', graphqlHTTP({ schema: schema, graphiql: true }));
 graphQLServer.listen(8080);
 console.log("The GraphQL Server is running.")
 
-var compiler = webpack({
+const compiler = webpack({
     entry: "./index.js",
     output: {
         path: __dirname,
@@ -80,3 +80,17 @@ var compiler = webpack({
         ]
     }
 });
+
+const app = new WebpackDevServer(compiler, {
+    contentBase: "/public/",
+    proxy: {
+        "/graphql": `http://localhost:${8080}`
+    },
+    publicPath: "/static/",
+    stats: {
+        colors: true
+    }
+});
+app.use("/", express.static("static"));
+app.listen(3000);
+console.log("The App Server is running.")
