@@ -64,11 +64,11 @@ graphQLServer.listen(8080);
 console.log("The GraphQL Server is running.")
 
 const compiler = webpack({
-    entry: "./index.js",
+    entry: "./src/index",
     output: {
         path: __dirname,
         filename: "bundle.js",
-        publicPath: "/static/"
+        publicPath: "../static/"
     },
     module: {
         loaders: [
