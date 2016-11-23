@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import { queryReducer } from "./app/reducers/reducers.js";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { queryReducer } from './app/reducers/reducers.js';
+import thunk from 'redux-thunk';
 
 const createStoreWithMiddleware = applyMiddleware(
   thunk
@@ -24,5 +24,5 @@ ReactDOM.render(
     <Provider store={createStoreWithMiddleware(queryReducer)}>
         <Main />
     </Provider>,
-    document.getElementById("example")
+    document.getElementById('example')
 );
