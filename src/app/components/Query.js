@@ -48,7 +48,7 @@ class Query extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        store
+        store: state,
     }
 };
 
